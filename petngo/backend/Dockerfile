@@ -2,7 +2,6 @@ FROM python:3.9-slim as petback
 
 WORKDIR /app/petback
 
-ADD test.tar.gz /opt/
 
 COPY . /app/petback  
 
