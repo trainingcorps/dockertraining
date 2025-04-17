@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pet-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pet-frontend
+  template:
+    metadata:
+      labels:
+        app: pet-frontend
+    spec:
+      containers:
+        - name: pet-frontend
+          image: adi2634/pet-frontend:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/petfront/config/config.json
+              subPath: config.json
+      volumes:
+        - name: config-volume
+          secret:
+            secretName: frontend-config-secret

@@ -1,0 +1,37 @@
+services:
+  backend:  #service 
+    build: 
+      context: ./backend  # folder containing dockerfile
+      dockerfile: Dockerfile
+    container_name: petngobackend 
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - Name=${name}
+    networks:
+      - petnet
+    volumes:
+      - testvol:/opt/
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: petngofrontend 
+    mem_limit: "512m"  # oom signal 
+    cpus: 1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - petnet
+    volumes:
+      - ./k8s:/opt/
+
+volumes:
+  testvol: 
+networks:
+  petnet:
+    driver: bridge

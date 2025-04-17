@@ -1,0 +1,24 @@
+# Use an official Python base image
+FROM python:3.11-slim
+
+RUN apt update -y && apt upgrade -y && apt install vim -y
+# Set working directory
+WORKDIR /app
+
+#environment variables for container
+ENV NAME="Abhishek"
+
+#USER
+USER root 
+# Copy the current directory contents into the container
+COPY . .
+
+RUN apt install net-tools -y
+# Install dependencies
+RUN pip install --no-cache-dir fastapi uvicorn
+
+# Expose the port that Uvicorn will run on
+EXPOSE 8000
+
+# Command to run the app
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

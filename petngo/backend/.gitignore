@@ -1,0 +1,8 @@
+.env
+env
+__pycache__
+.env
+config.json
+uploads
+commands.txt
+GitCommitCodes.txt

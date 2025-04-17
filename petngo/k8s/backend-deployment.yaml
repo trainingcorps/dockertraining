@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pet-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pet-backend
+  template:
+    metadata:
+      labels:
+        app: pet-backend
+    spec:
+      containers:
+        - name: pet-backend
+          image: adi2634/pet-backend:latest
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/petback/config.json
+              subPath: config.json
+      volumes:
+        - name: config-volume
+          secret:
+            secretName: backend-config-secret
