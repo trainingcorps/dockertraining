@@ -26,8 +26,10 @@ spec:
           resources:
             limits:
               cpu: 500m
+              memory: 500M
             requests:
               cpu: 200m
+              memory: 500M
       volumes:
         - name: config-volume
           secret:
