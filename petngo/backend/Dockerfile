@@ -1,4 +1,4 @@
-FROM python:3.9-slim as petback
+FROM python:3.9-slim AS petback
 
 WORKDIR /app/petback
 

@@ -30,6 +30,22 @@ services:
     volumes:
       - ./k8s:/opt/
 
+  frontendtest:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: petngofrontendtest
+    mem_limit: "512m"  # oom signal 
+    cpus: 1
+    ports:
+      - "3001:3000"
+    depends_on:
+      - backend
+    networks:
+      - petnet
+    volumes:
+      - ./k8s:/opt/
+
 volumes:
   testvol: 
 networks:
