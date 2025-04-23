@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pet-backend
+  namespace: petngo 
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: pet-backend
@@ -21,7 +22,12 @@ spec:
             - name: config-volume
               mountPath: /app/petback/config.json
               subPath: config.json
+            - name: backend-pv
+              mountPath: /opt/
       volumes:
         - name: config-volume
           secret:
             secretName: backend-config-secret
+        - name: backend-pv
+          persistentVolumeClaim:
+            claimName: backend-pvc

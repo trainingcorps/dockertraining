@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: busybox-daemon
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      name: busybox-daemon
+  template:
+    metadata:
+      labels:
+        name: busybox-daemon
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["sh", "-c", "while true; do echo Hello from the DaemonSet; sleep 30; done"]

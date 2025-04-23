@@ -1,0 +1,20 @@
+{
+  "mogoDB": {
+    "mongoURI": "mongodb+srv://akhileshpatil12168:48586566@petngo.nwv97.mongodb.net"
+  },
+
+  "bcrypt": {
+    "encode_type": "utf-8",
+    "salt": 13
+  },
+
+  "jwt": {
+    "secret": "abcd1234xyz",
+    "algorithm": "HS256"
+  },
+
+  "aws-s3": {
+    "aws_access_key_id": "AKIAQKPILZTJBXG7YNDD",
+    "aws_secret_access_key": "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"
+  }
+}

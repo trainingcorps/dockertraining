@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pet-frontend
+  namespace: {{ .Values.ns }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicascount }}
   selector:
     matchLabels:
       app: pet-frontend
@@ -14,14 +15,21 @@ spec:
     spec:
       containers:
         - name: pet-frontend
-          image: adi2634/pet-frontend:latest
+          image: {{ .Values.imageName }}
+          imagePullPolicy:
           ports:
             - containerPort: 3000
           volumeMounts:
             - name: config-volume
               mountPath: /app/petfront/config/config.json
               subPath: config.json
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
       volumes:
         - name: config-volume
           secret:
             secretName: frontend-config-secret
+  
