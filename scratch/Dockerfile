@@ -1,5 +1,5 @@
 # Stage 1: Build the Go app
-FROM java-11 AS builder 
+FROM golang:latest AS builder 
 
 WORKDIR /app
 COPY main.go .

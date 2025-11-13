@@ -10,8 +10,7 @@ COPY . .
 
 RUN apt install python3-pip -y
 # Install dependencies
-RUN pip install --no-cache-dir fastapi uvicorn
-
+RUN pip install -r requirements.txt 
 # Expose the port that Uvicorn will run on
 EXPOSE 8000
 
